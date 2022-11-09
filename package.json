@@ -1,25 +1,17 @@
 {
-  "name": "backend",
+  "name": "final-project-web1-back-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .",
     "dev": "nodemon ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pablove2001/Final-Project-Web1-Back-end.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pablove2001/Final-Project-Web1-Back-end/issues"
-  },
-  "homepage": "https://github.com/pablove2001/Final-Project-Web1-Back-end#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

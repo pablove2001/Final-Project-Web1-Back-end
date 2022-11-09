@@ -1,4 +1,4 @@
-const modelo = require("../models/producto");
+const modelo = require("../models/account");
 
 const ContactosController = {
   create: (req, res) => {},

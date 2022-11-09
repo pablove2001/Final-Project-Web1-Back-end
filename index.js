@@ -1,15 +1,29 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+const apiRoutes = require("./src/routes");
 
 const app = express();
 
-app.get("", (req, res) => {
-  res.send("Hola mundo");
+const port = 3000;
+
+//const uri ="mongodb+srv://iteso2022:ITESO1234@cluster0.jqhyj.mongodb.net/agenda?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://api:xog94ZkMFziCdw57@cluster0.b8dmnja.mongodb.net/back-end?retryWrites=true&w=majority";
+
+app.get("/", (req, res) => {
+  res.send("api works");
 });
 
-app.get("/usuario", (req, res) => {});
-app.get("/propiedades", (req, res) => {});
-app.get("/productos", (req, res) => {});
+app.use(apiRoutes);
 
-app.listen(3000, () => {
-  console.log("App is running...");
+mongoose.connect(uri, (err) => {
+  if (!err) {
+    console.log("[+] Successful connection with MongoDB");
+    app.listen(port, () => {
+      console.log("[+] App is running in port: " + port);
+    });
+  } else {
+    console.log("[!] Error connecting to mongodb", err);
+  }
 });
