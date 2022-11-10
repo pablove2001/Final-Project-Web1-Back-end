@@ -10,5 +10,5 @@ router.use("/productos", routesProductos);
 router.use("/carrito", routesCarrito);
 router.use("/rutinas", routesRutinas);
 
-
+    
 module.exports = router;
