@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
   res.send("api works");
 });
 
+app.use(express.json());
 app.use(apiRoutes);
 
 mongoose.connect(uri, (err) => {

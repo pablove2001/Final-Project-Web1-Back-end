@@ -44,6 +44,10 @@ const schema = new Schema({
       type: String,
     },
   ],
+  status: {
+    type: Number,
+    default: 1,
+  },
 });
 
 module.exports = model("producto", schema);
