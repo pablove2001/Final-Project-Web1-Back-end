@@ -1,15 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors= require("cors");
+
+
 
 const apiRoutes = require("./src/routes");
 
 const app = express();
 
+app.use(cors());
+app.use(express.json());  
 const port = 3000;
 
 //const uri ="mongodb+srv://iteso2022:ITESO1234@cluster0.jqhyj.mongodb.net/agenda?retryWrites=true&w=majority";
-const uri =
-  "mongodb+srv://api:xog94ZkMFziCdw57@cluster0.b8dmnja.mongodb.net/back-end?retryWrites=true&w=majority";
+const uri = "mongodb+srv://api:xog94ZkMFziCdw57@cluster0.b8dmnja.mongodb.net/back-end?retryWrites=true&w=majority";
 
 app.get("/", (req, res) => {
   res.send("api works");
