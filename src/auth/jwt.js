@@ -12,19 +12,8 @@ function validateToken(req, res, next) {
     if (err) {
       res.send("Access denied, token expired or incorrect");
     } else {
-      console.log(data);
+      req.body._id = data._id;
       next();
-    }
-  });
-}
-
-function accessTokenToId(accessToken) {
-  if (!accessToken) return null;
-  jwt.verify(accessToken, process.env.SECRET, (err, data) => {
-    if (err) {
-      return null;
-    } else {
-      return data._id;
     }
   });
 }
@@ -32,5 +21,4 @@ function accessTokenToId(accessToken) {
 module.exports = {
   generateAccessToken,
   validateToken,
-  accessTokenToId,
 };

@@ -56,9 +56,9 @@ const AccountController = {
   },
   getAccount: async (req, res) => {
     try {
-      const email = req.body.email;
+      const _id = req.body._id;
       const user = await modelo.findOne({
-        email: email,
+        _id: _id,
         status: 1,
       });
       if (user) {
@@ -71,9 +71,9 @@ const AccountController = {
     }
   },
   deleteOneAccount: (req, res) => {
-    const email = req.body.email;
+    const _id = req.body._id;
     modelo
-      .findOne({ email: email })
+      .findOne({ _id: _id, status: 1 })
       .then((response) => {
         response.status = 0;
         response.save();
@@ -85,12 +85,10 @@ const AccountController = {
   },
   updatePassword: async (req, res) => {
     try {
-      const email = req.body.email;
-      const password = req.body.password;
+      const _id = req.body._id;
       const newPassword = req.body.newPassword;
       const user = await modelo.findOne({
-        email: email,
-        password: password,
+        _id: _id,
         status: 1,
       });
       if (user) {
@@ -106,9 +104,9 @@ const AccountController = {
   },
   getDireccion: async (req, res) => {
     try {
-      const email = req.body.email;
+      const _id = req.body._id;
       const user = await modelo.findOne({
-        email: email,
+        _id: _id,
         status: 1,
       });
       if (user) {
@@ -122,10 +120,10 @@ const AccountController = {
   },
   updateDireccion: async (req, res) => {
     try {
-      const email = req.body.email;
+      const _id = req.body._id;
       const direccion = req.body.direccion;
       const user = await modelo.findOne({
-        email: email,
+        _id: _id,
         status: 1,
       });
       if (user) {

@@ -42,7 +42,7 @@ const ProductosController = {
     const precio = req.body.precio;
     const precio_antes = req.body.precio_antes;
     modelo
-      .findOne({ _id: id })
+      .findOne({ _id: id, status: 1 })
       .then((response) => {
         response.precio = precio;
         response.precio_antes = precio_antes;
@@ -56,7 +56,7 @@ const ProductosController = {
   deleteOne: (req, res) => {
     const id = req.params.id;
     modelo
-      .findOne({ _id: id })
+      .findOne({ _id: id, status: 1 })
       .then((response) => {
         response.status = 0;
         response.save();
