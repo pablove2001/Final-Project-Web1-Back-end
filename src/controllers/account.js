@@ -68,9 +68,6 @@ const AccountController = {
       res.status(400).send("Los datos no son validos");
     }
   },
-  updateAccount: (req, res) => {
-    res.send("Desde updateAccount");
-  },
   deleteOneAccount: (req, res) => {
     const email = req.body.email;
     modelo
@@ -83,6 +80,62 @@ const AccountController = {
       .catch((err) => {
         res.status(400).send("no se pudo eliminar");
       });
+  },
+  updatePassword: async (req, res) => {
+    try {
+      const email = req.body.email;
+      const password = req.body.password;
+      const newPassword = req.body.newPassword;
+      const user = await modelo.findOne({
+        email: email,
+        password: password,
+        status: 1,
+      });
+      if (user) {
+        user.password = newPassword;
+        user.save();
+        res.send(user);
+      } else {
+        res.status(404).send("Error actualizando contraseña");
+      }
+    } catch (err) {
+      res.status(400).send("Los datos no son validos");
+    }
+  },
+  getDireccion: async (req, res) => {
+    try {
+      const email = req.body.email;
+      const user = await modelo.findOne({
+        email: email,
+        status: 1,
+      });
+      if (user) {
+        res.send(user.direccion);
+      } else {
+        res.status(404).send("Error buscando direccion del usuario");
+      }
+    } catch (err) {
+      res.status(400).send("Los datos no son validos");
+    }
+  },
+  updateDireccion: async (req, res) => {
+    try {
+      const email = req.body.email;
+      const direccion = req.body.direccion;
+      const user = await modelo.findOne({
+        email: email,
+        status: 1,
+      });
+      if (user) {
+        user.direccion = direccion;
+        user.save();
+        res.send(user);
+      } else {
+        res.status(404).send("Error cambiando direccion");
+      }
+    } catch (err) {
+      res.status(400).send("Los datos no son validos");
+    }
   },
 };
 
