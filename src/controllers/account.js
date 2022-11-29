@@ -1,4 +1,5 @@
 const modelo = require("../models/account");
+const { generateAccessToken } = require("../auth/jwt");
 
 const AccountController = {
   list: (req, res) => {
@@ -23,11 +24,11 @@ const AccountController = {
         modelo
           .create(datos)
           .then((response) => {
-            console.log("Se creo el usuario correctamente");
-            res.send(response);
+            const token = generateAccessToken({ _id: response._id });
+            res.send(token);
           })
           .catch((err) => {
-            res.status(400).send("No se pudo crear el usuario");
+            res.status(404).send("No se pudo crear el usuario");
           });
       }
     } catch (err) {
@@ -44,7 +45,8 @@ const AccountController = {
         status: 1,
       });
       if (user) {
-        res.send("Se inicio sesion correctamente");
+        const token = generateAccessToken({ _id: user._id.toString() });
+        res.send(token);
       } else {
         res.status(404).send("Error iniciando sesion");
       }
