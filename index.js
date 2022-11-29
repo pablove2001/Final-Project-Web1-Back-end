@@ -1,17 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 const apiRoutes = require("./src/routes");
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 
-const uri =
-  "mongodb+srv://api:xog94ZkMFziCdw57@cluster0.b8dmnja.mongodb.net/back-end?retryWrites=true&w=majority";
+const uri = process.env.URI;
 
 app.get("/", (req, res) => {
   res.send("api works");
