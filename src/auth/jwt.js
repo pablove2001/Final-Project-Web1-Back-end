@@ -6,10 +6,16 @@ function generateAccessToken(data) {
 }
 
 function validateToken(req, res, next) {
-  const accessToken = req.body.authorization;
-  if (!accessToken) res.send("Access denied");
+  const accessToken = req.headers.authorization;
+  console.log('accessT',accessToken);
+  console.log('Req:',req.headers);
+  if (!accessToken){
+    res.status(401).send("Access denied");
+    return; 
+  };
   jwt.verify(accessToken, process.env.SECRET, (err, data) => {
     if (err) {
+      
       res.send("Access denied, token expired or incorrect");
     } else {
       req.body._id = data._id;

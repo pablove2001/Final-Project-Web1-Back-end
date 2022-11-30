@@ -36,6 +36,7 @@ const AccountController = {
     }
   },
   login: async (req, res) => {
+    console.log('p', req.body);
     try {
       const email = req.body.email;
       const password = req.body.password;

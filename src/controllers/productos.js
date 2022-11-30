@@ -2,6 +2,7 @@ const modelo = require("../models/producto");
 
 const ProductosController = {
   list: (req, res) => {
+    console.log('prueba', req.body);
     modelo
       .find({ status: 1 })
       .then((response) => {
@@ -13,7 +14,7 @@ const ProductosController = {
       });
   },
   create: (req, res) => {
-    const datos = req.body;
+    const datos = req.body; 
     modelo
       .create(datos)
       .then((response) => {
@@ -57,7 +58,7 @@ const ProductosController = {
     const id = req.params.id;
     modelo
       .findOne({ _id: id, status: 1 })
-      .then((response) => {
+      .then((response) => { 
         response.status = 0;
         response.save();
         res.send(response);

@@ -20,7 +20,7 @@ const CarritoController = {
   addItem: async (req, res) => {
     try {
       const _id = req.body._id;
-      const id_producto = req.body.id_producto;
+      const id_producto = req.headers.id_producto;
       const cantidad = req.body.cantidad;
       modelo
         .findOne({ _id: _id, status: 1 })
@@ -44,6 +44,7 @@ const CarritoController = {
         })
         .catch((err) => {
           res.status(400).send("no se pudo añadir el producto");
+          console.log('error',err);
         });
     } catch (err) {
       res.status(400).send("Los datos no son validos");
@@ -69,6 +70,7 @@ const CarritoController = {
           res.status(400).send("no se pudo eliminar ese producto");
         });
     } catch (err) {
+
       res.status(400).send("Los datos no son validos");
     }
   },
