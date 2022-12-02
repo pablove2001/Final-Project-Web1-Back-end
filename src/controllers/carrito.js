@@ -20,7 +20,7 @@ const CarritoController = {
   addItem: async (req, res) => {
     try {
       const _id = req.body._id;
-      const id_producto = req.headers.id_producto;
+      const id_producto = req.body.id_producto;
       const cantidad = req.body.cantidad;
       modelo
         .findOne({ _id: _id, status: 1 })
